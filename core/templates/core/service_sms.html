@@ -357,6 +357,11 @@
                             {% csrf_token %}
 
 <table>
+    <tr>
+        <td colspan="2">
+            {{ message }}
+        </td>
+    </tr>
 {{ form.as_table    }}
     </table>
 

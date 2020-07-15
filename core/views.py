@@ -55,12 +55,17 @@ class service_sms(View):
         return render(request, self.template_name,
                       {"mci_area":mci_area,"form":form })
     def post(self,request):
-
+        message=""
         form = Notify(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
             print(cd)
             temp = send_sms(cd)
             print(temp)
+            if temp["status"]:
+                message="پیام با موفقیت ارسال شد"
+            else:
+                message="ارسال پیام با مشکل مواجه شد"
+
         return render(request, self.template_name,
-                      {"form":form })
+                      {"form":form,"message":message })

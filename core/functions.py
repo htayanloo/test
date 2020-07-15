@@ -47,7 +47,7 @@ def get_station_detail(self):
 def send_sms(cd):
     http = urllib3.PoolManager()
     data =  {
-     "phone_number": cd["receptor"],
+     "phone_number": str(cd["receptor"]),
      "message": cd["message"],
      "method":"ht"
  }

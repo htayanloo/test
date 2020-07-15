@@ -353,8 +353,21 @@
 
 							<div class="card-body py-0">
 
-                                    {% leaflet_map "main" %}
+                        <form action="#" method="POST">
+                            {% csrf_token %}
 
+<table>
+{{ form.as_table    }}
+    </table>
+
+
+
+
+							<div class="text-right">
+								<button type="submit" class="btn btn-success">ارسال پیامک <i class="icon-paperplane ml-2"></i></button>
+								<button type="submit" class="btn btn-primary">ارسال تلگرام <i class="icon-paperplane ml-2"></i></button>
+							</div>
+						</form>
 
 							</div>
 
@@ -369,7 +382,7 @@
 						<!-- Traffic sources -->
 						<div class="card" style="height: 800px;">
 							<div class="card-header header-elements-inline">
-								<h6 class="card-title">ایستگاه های سنجش</h6>
+								<h6 class="card-title">لیست مشترکین</h6>
 								<div class="header-elements">
 									<div class="form-check form-check-right form-check-switchery form-check-switchery-sm">
 
@@ -382,21 +395,11 @@
                                 <table class="table  table-bordered " style="width: 100%">
                                     <thead>
                                     <th width="10%">شماره</th>
-                                    <th>ایستگاه</th>
+                                    <th>شماره</th>
                                     <th>وضعیت</th>
                                     </thead>
                                     <tbody>
-                                    {% for i in station_list.detail %}
-                                    <tr>
-                                        <td>{{ i.stationId }}</td>
-                                        <td>{{ i.stationName_Fa }}</td>
-                                        <td style="background: {% if not i.active %}pink{% endif %}">{% if i.active  %} فعال{% else %} غیر فعال{% endif %}</td>
-                                        <td >
-<button type="button" class="btn btn-primary">ارسال پیامک</button>
-                                        </td>
 
-                                    </tr>
-                                    {% endfor %}
                                     </tbody>
                                 </table>
 

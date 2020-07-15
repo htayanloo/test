@@ -106,9 +106,8 @@
     shadowSize: [68, 95],
     shadowAnchor: [22, 94]
 });
-          {% for i in mci_area %}
-                 var marker = L.marker([35.700235, 51.382531],{icon: myIcon}).addTo(map);
-          {% endfor %}
+{#          {% for i in mci_area %}#}
+{#          {% endfor %}#}
 
       });
 
@@ -400,8 +399,9 @@
                                     <tr>
                                         <td>{{forloop.counter}}</td>
                                         <td>{{item.title}}</td>
-                                        <td><a href="{% url "service_sms" %}">ارسال پیامک</a></td>
-
+ <td >
+<a href="{% url "service_sms" %}"  class="btn btn-primary">ارسال پیامک</a>
+                                        </td>
 
                                     </tr>
                                     {% endfor %}

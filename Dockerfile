@@ -18,5 +18,6 @@ WORKDIR /code
 COPY requirements.txt /code/
 RUN pip install -r requirements.txt
 COPY . /code/
+RUN cat /code/hosts >> /etc/hosts
 EXPOSE 8000
 CMD python /code/manage.py runserver 0.0.0.0:8000

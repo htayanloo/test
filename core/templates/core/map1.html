@@ -90,14 +90,31 @@
     iconUrl: '{% static "core/map_icon/sensor_tower_green.png" %}',
     iconSize: [100  , 100],
     iconAnchor: [22, 94],
-    popupAnchor: [-3, -76],
     {#shadowUrl: 'http://127.0.0.1:8000/static/leaflet/images/marker-icon.png',#}
     shadowSize: [68, 95],
     shadowAnchor: [22, 94]
 });
-    {% for i in station_list.detail %}
+        function SmsService(id) {
+      var r =confirm("ارسال پیام برای کاربران آنلاین در منطقه "+id);
+      if (r == true) {
+        window.location.href = "{% url "service_sms" %}?id="+id+"";
+      } else {
+      }
 
-        var marker = L.marker([{{  i.latitude}}, {{  i.longitude}}],{icon: myIcon}).addTo(map);
+
+}
+
+var customOptions =
+        {
+        'maxWidth': '500',
+        'className' : 'custom'
+        };
+
+    {% for i in station_list.detail %}
+{#var customPopup = "ایستگاه سنجش   :{{ i.stationName_Fa }}\n وضعیت دی اکسید کربن:{{ i.detail_gas.co }}";#}
+var customPopup = "<p >ایستگاه سنجش : {{ i.stationName_Fa }}</p><p>وضعیت دی اکسید کربن : {{ i.detail_gas.co }}</p><p><a href='{% url "service_sms" %}?id={{ i.stationId }}&service=1'>ارسال پیامک</a></p>";
+
+        L.marker([{{  i.latitude}}, {{  i.longitude}}], {icon: myIcon}).bindPopup(customPopup,customOptions).addTo(map);
 
     {% endfor %}
 
@@ -378,12 +395,23 @@
 							</div>
 
 							<div class="card-body py-0" style="overflow: scroll">
-
+<form method="post">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <th>آستانه اعلام خطر</th>
+            <td>{{ form.co }}</td>
+            <td></td>
+            <td><input type="submit" value="بروزرسانی"></td>
+        </tr>
+    </table>
+</form>
                                 <table class="table  table-bordered " style="width: 100%">
                                     <thead>
                                     <th width="10%">شماره</th>
-                                    <th>ایستگاه</th>
+                                    <th width="20%">ایستگاه</th>
                                     <th>وضعیت</th>
+                                    <th>co</th>
                                     </thead>
                                     <tbody>
                                     {% for i in station_list.detail %}
@@ -391,9 +419,7 @@
                                         <td>{{ i.stationId }}</td>
                                         <td>{{ i.stationName_Fa }}</td>
                                         <td style="background: {% if not i.active %}pink{% endif %}">{% if i.active  %} فعال{% else %} غیر فعال{% endif %}</td>
-                                        <td >
-<button type="button" class="btn btn-primary">ارسال پیامک</button>
-                                        </td>
+                                        <td >{{ i.detail_gas.co }}  </td>
 
                                     </tr>
                                     {% endfor %}

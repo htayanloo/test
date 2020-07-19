@@ -6,7 +6,6 @@ from django.db import models
 
 
 class MushroomSpot(models.Model):
-
     title = models.CharField(max_length=256)
     description = models.TextField()
     picture = models.ImageField()
@@ -23,11 +22,24 @@ class MushroomSpot(models.Model):
 class SmsStack(models.Model):
     receiver = models.IntegerField()
     message = models.CharField(max_length=100)
-    status = models.SmallIntegerField(choices=((0,"در صف ارسال"),(1,"ارسال شده"),(2,"مشکل در ارسال")))
-
+    status = models.SmallIntegerField(choices=((0, "در صف ارسال"), (1, "ارسال شده"), (2, "مشکل در ارسال")))
 
 
 class MciArea(models.Model):
     title = models.CharField(max_length=100)
     lat = models.CharField(max_length=30)
     lng = models.CharField(max_length=30)
+
+
+class alert(models.Model):
+    key = models.CharField(max_length=100)
+    value = models.IntegerField()
+
+
+class Receptor(models.Model):
+    title = models.CharField(max_length=100)
+    mobile = models.IntegerField()
+    area = models.IntegerField()
+
+
+

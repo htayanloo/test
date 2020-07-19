@@ -404,7 +404,13 @@
                                     <th>وضعیت</th>
                                     </thead>
                                     <tbody>
-
+                                    {% for i in receptor %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ i.title }}</td>
+                                        <td>{{ i.mobile }}</td>
+                                    </tr>
+                                    {% endfor %}
                                     </tbody>
                                 </table>
 

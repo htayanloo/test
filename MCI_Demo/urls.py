@@ -18,7 +18,7 @@ from django.urls import path
 
 from MCI_Demo import settings
 from core.models import MushroomSpot
-from core.views import Login, Dashboard,Map,service_1,service_2,service_sms
+from core.views import Login, Dashboard,Map,service_1,service_2,service_sms,service_cron
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -33,6 +33,8 @@ urlpatterns = [
     path('panel/service/1/', service_1.as_view(), name='service_1'),
     path('panel/service/2/', service_2.as_view(), name='service_2'),
     path('panel/service/sms/', service_sms.as_view(), name='service_sms'),
+    path('panel/service/sms/cron/', service_cron.as_view(), name='service_cron'),
+
     path('data.geojson/',GeoJSONLayerView.as_view(model=MushroomSpot, properties=('title', 'description', 'picture_url')), name='data')
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

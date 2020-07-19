@@ -101,13 +101,27 @@
     iconUrl: '{% static "core/map_icon/sensor_tower_green.png" %}',
     iconSize: [100  , 100],
     iconAnchor: [22, 94],
-    popupAnchor: [-3, -76],
     {#shadowUrl: 'http://127.0.0.1:8000/static/leaflet/images/marker-icon.png',#}
     shadowSize: [68, 95],
     shadowAnchor: [22, 94]
 });
-{#          {% for i in mci_area %}#}
-{#          {% endfor %}#}
+
+
+
+
+var customOptions =
+        {
+        'maxWidth': '500',
+        'className' : 'custom'
+        };
+
+    {% for i in station_list.detail %}
+{#var customPopup = "ایستگاه سنجش   :{{ i.stationName_Fa }}\n وضعیت دی اکسید کربن:{{ i.detail_gas.co }}";#}
+var customPopup = "BTS Number : {{ i.stationId }}";
+
+        L.marker([{{  i.latitude}}, {{  i.longitude}}], {icon: myIcon}).bindPopup(customPopup,customOptions).addTo(map);
+
+    {% endfor %}
 
       });
 

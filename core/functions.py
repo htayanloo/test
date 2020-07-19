@@ -1,4 +1,5 @@
 import json
+from datetime import datetime, timedelta
 
 from pip._vendor import urllib3
 
@@ -21,12 +22,16 @@ def get_station_list(self):
         return {"status": True, "detail": json.loads(r.data.decode('utf-8'))}
 
 
-def get_station_detail(self):
+def get_station_detail(stationid):
     http = urllib3.PoolManager()
+    dateTimeObj = datetime.now()
+    date_from = (dateTimeObj-timedelta(hours=0)).strftime("%m/%d/%Y %H:00")
+    date_to = (dateTimeObj-timedelta(hours=0)).strftime("%m/%d/%Y %H:00")
+
     data = {
-  "DateFrom": "06/02/2020 10:00",
-  "DateTo": "06/03/2020 10:00",
-  "StationId": 0
+  "DateFrom": date_from,
+  "DateTo": date_to,
+  "StationId": stationid
 
 }
     # data = {'barcode': barcode,"national_code":national_code}

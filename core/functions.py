@@ -12,9 +12,9 @@ def get_station_list(self):
     # r = http.request('POST','http://toosheh.tapin.ir/api/v1/track/',body = encoded_data,headers = {'Content-Type': 'application/json'})
     r = http.request('GET', 'http://gw.mci.local/AirGetStation/v1', body=encoded_data,
                      headers={'Content-Type': 'application/json'})
-
+    print(r.status)
     if r.status != 200:
-        return {"status": False, "detail": None}
+        return {"status": False, "detail": []}
     else:
 
         temp_json = json.loads(r.data.decode('utf-8'))

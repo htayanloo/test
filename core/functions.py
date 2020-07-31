@@ -10,8 +10,8 @@ def get_station_list(self):
     # data = {'barcode': barcode,"national_code":national_code}
     encoded_data = json.dumps(data).encode('utf-8')
     # r = http.request('POST','http://toosheh.tapin.ir/api/v1/track/',body = encoded_data,headers = {'Content-Type': 'application/json'})
-    r = http.request('GET', 'http://gw.mci.local/AirGetStation/v1', body=encoded_data,
-                     headers={'Content-Type': 'application/json'})
+#    r = http.request('GET', 'http://gw.mci.local/AirGetStation/v1', body=encoded_data, headers={'Content-Type': 'application/json'})
+    r = http.request('GET', 'http://aqms.doe.ir/Home/LoadAQIMap?id=1&StateId=2', body=encoded_data, headers={'Content-Type': 'application/json'})
     print(r.status)
     if r.status != 200:
         return {"status": False, "detail": []}

@@ -111,10 +111,12 @@ var customOptions =
         };
 
     {% for i in station_list.detail %}
+        {% if i.City == "تهران" %}
 {#var customPopup = "ایستگاه سنجش   :{{ i.stationName_Fa }}\n وضعیت دی اکسید کربن:{{ i.detail_gas.co }}";#}
-var customPopup = "<p >ایستگاه سنجش : {{ i.stationName_Fa }}</p><p>وضعیت دی اکسید کربن : {{ i.detail_gas.co }}</p><p><a href='{% url "service_sms" %}?id={{ i.stationId }}&service=1'>ارسال پیامک</a></p>";
+var customPopup = "<p >ایستگاه سنجش : {{ i.StationName_Fa }}</p><p>شاخص کیفیت هوا : {{ i.AQI }}</p><p><a href='{% url "service_sms" %}?id={{ i.StationId }}&service=1'>ارسال پیامک</a></p>";
 
-        L.marker([{{  i.latitude}}, {{  i.longitude}}], {icon: myIcon}).bindPopup(customPopup,customOptions).addTo(map);
+        L.marker([{{  i.Latitude}}, {{  i.Longitude}}], {icon: myIcon}).bindPopup(customPopup,customOptions).addTo(map);
+        {% endif %}
 
     {% endfor %}
 
@@ -406,26 +408,32 @@ var customPopup = "<p >ایستگاه سنجش : {{ i.stationName_Fa }}</p><p>و
         </tr>
     </table>
 </form>
+
                                 <table class="table  table-bordered " style="width: 100%">
                                     <thead>
                                     <th width="10%">شماره</th>
                                     <th width="20%">ایستگاه</th>
+                                    <th>آخرین بروزرسانی</th>
                                     <th>وضعیت</th>
-                                    <th>co</th>
+                                    <th>AQI</th>
                                     </thead>
                                     <tbody>
                                     {% for i in station_list.detail %}
+                                                {% if i.City == "تهران" %}
+
                                     <tr>
-                                        <td>{{ i.stationId }}</td>
-                                        <td>{{ i.stationName_Fa }}</td>
-                                        <td style="background: {% if not i.active %}pink{% endif %}">{% if i.active  %} فعال{% else %} غیر فعال{% endif %}</td>
-                                        <td >{{ i.detail_gas.co }}  </td>
+                                        <td>{{ i.StationId }}</td>
+                                        <td>{{ i.StationName_Fa }}</td>
+                                        <td>{{ i.Date_Shamsi }}</td>
+                                        <td style="background: {% if not i.StationIsActive %}pink{% endif %}">{% if i.StationIsActive  %} فعال{% else %} غیر فعال{% endif %}</td>
+
+                                        <td >{{ i.AQI }}  </td>
 
                                     </tr>
+                                        {% endif %}
                                     {% endfor %}
                                     </tbody>
                                 </table>
-
 							</div>
 
 							<div class="chart position-relative" id="traffic-sources"></div>

@@ -44,15 +44,6 @@ class service_1(View):
 
     def get(self, request):
         station_list = get_station_list("as")
-        for i in station_list["detail"]:
-            station_detail = get_station_detail(i["stationId"])
-            try:
-                print(station_detail["detail"][0])
-            except:
-                pass
-            else:
-                i["detail_gas"] = station_detail["detail"][0]
-
         form = gas_co2_alert
         return render(request, self.template_name,
                       {"station_list": station_list, "form": form})
@@ -61,13 +52,8 @@ class service_1(View):
         message = ""
         station_list = get_station_list("as")
         for i in station_list["detail"]:
-            station_detail = get_station_detail(i["stationId"])
-            try:
-                print(station_detail["detail"][0])
-            except:
-                pass
-            else:
-                i["detail_gas"] = station_detail["detail"][0]
+
+            i["detail_gas"] = i["AQI"]
 
         form = gas_co2_alert(request.POST)
         if form.is_valid():

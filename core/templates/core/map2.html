@@ -116,15 +116,16 @@ var customOptions =
         };
 
     {% for i in station_list.detail %}
+        {% if i.City == "تهران" %}
 {#var customPopup = "ایستگاه سنجش   :{{ i.stationName_Fa }}\n وضعیت دی اکسید کربن:{{ i.detail_gas.co }}";#}
-var customPopup = "BTS Number : {{ i.stationId }}";
+var customPopup = "<p >ایستگاه سنجش : {{ i.StationName_Fa }}</p><p>شاخص کیفیت هوا : {{ i.AQI }}</p><p><a href='{% url "service_sms" %}?id={{ i.StationId }}&service=1'>ارسال پیامک</a></p>";
 
-        L.marker([{{  i.latitude}}, {{  i.longitude}}], {icon: myIcon}).bindPopup(customPopup,customOptions).addTo(map);
+        L.marker([{{  i.Latitude}}, {{  i.Longitude}}], {icon: myIcon}).bindPopup(customPopup,customOptions).addTo(map);
+        {% endif %}
 
     {% endfor %}
 
       });
-
       });
     </script>
 </head>

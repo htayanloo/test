@@ -43,17 +43,27 @@ class service_1(View):
     template_name = "core/map1.html"
 
     def get(self, request):
-        station_list = get_station_list("as")
+        #station_list = get_station_list("as")
+        station_list={"status": False, "detail": [
+            {"StationId":1,"Longitude":51.448187,"Latitude":35.744257, ,"AQI":10,"StationName_Fa":"ایستگاه یک"},
+        {"StationId": 2, "Longitude": 51.493105, "Latitude": 35.757731, "AQI": 14, "StationName_Fa": "ایستگاه دو"},
+        {"StationId": 3, "Longitude": 51.320125, "Latitude": 35.727770, "AQI": 1, "StationName_Fa": "ایستگاه سه"},
+        {"StationId": 4, "Longitude": 51.368833, "Latitude": 35.770709, "AQI": 101, "StationName_Fa": "ایستگاه چهار"},
+        {"StationId": 5, "Longitude": 51.452613, "Latitude": 35.751773, "AQI": 145, "StationName_Fa": "ایستگاه پنج"},
+        ]}
         form = gas_co2_alert
         return render(request, self.template_name,
                       {"station_list": station_list, "form": form})
 
     def post(self, request):
         message = ""
-        station_list = get_station_list("as")
-        for i in station_list["detail"]:
-
-            i["detail_gas"] = i["AQI"]
+        station_list = station_list={"status": False, "detail": [
+            {"StationId":1,"Longitude":51.448187,"Latitude":35.744257, ,"AQI":10,"StationName_Fa":"ایستگاه یک"},
+        {"StationId": 2, "Longitude": 51.493105, "Latitude": 35.757731, "AQI": 14, "StationName_Fa": "ایستگاه دو"},
+        {"StationId": 3, "Longitude": 51.320125, "Latitude": 35.727770, "AQI": 1, "StationName_Fa": "ایستگاه سه"},
+        {"StationId": 4, "Longitude": 51.368833, "Latitude": 35.770709, "AQI": 101, "StationName_Fa": "ایستگاه چهار"},
+        {"StationId": 5, "Longitude": 51.452613, "Latitude": 35.751773, "AQI": 145, "StationName_Fa": "ایستگاه پنج"},
+        ]}
 
         form = gas_co2_alert(request.POST)
         if form.is_valid():
@@ -78,7 +88,13 @@ class service_2(View):
 
     def get(self, request):
         mci_area = MushroomSpot.objects.filter()
-        station_list = get_station_list("as")
+        station_list = station_list={"status": False, "detail": [
+            {"StationId":1,"Longitude":51.448187,"Latitude":35.744257, ,"AQI":10,"StationName_Fa":"ایستگاه یک"},
+        {"StationId": 2, "Longitude": 51.493105, "Latitude": 35.757731, "AQI": 14, "StationName_Fa": "ایستگاه دو"},
+        {"StationId": 3, "Longitude": 51.320125, "Latitude": 35.727770, "AQI": 1, "StationName_Fa": "ایستگاه سه"},
+        {"StationId": 4, "Longitude": 51.368833, "Latitude": 35.770709, "AQI": 101, "StationName_Fa": "ایستگاه چهار"},
+        {"StationId": 5, "Longitude": 51.452613, "Latitude": 35.751773, "AQI": 145, "StationName_Fa": "ایستگاه پنج"},
+        ]}
         return render(request, self.template_name,
                       {"mci_area": mci_area, "station_list": station_list})
 

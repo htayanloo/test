@@ -45,7 +45,7 @@ class service_1(View):
     def get(self, request):
         #station_list = get_station_list("as")
         station_list={"status": False, "detail": [
-            {"StationId":1,"Longitude":51.448187,"Latitude":35.744257, ,"AQI":10,"StationName_Fa":"ایستگاه یک"},
+            {"StationId":1,"Longitude":51.448187,"Latitude":35.744257, "AQI":10,"StationName_Fa":"ایستگاه یک"},
         {"StationId": 2, "Longitude": 51.493105, "Latitude": 35.757731, "AQI": 14, "StationName_Fa": "ایستگاه دو"},
         {"StationId": 3, "Longitude": 51.320125, "Latitude": 35.727770, "AQI": 1, "StationName_Fa": "ایستگاه سه"},
         {"StationId": 4, "Longitude": 51.368833, "Latitude": 35.770709, "AQI": 101, "StationName_Fa": "ایستگاه چهار"},
@@ -58,7 +58,7 @@ class service_1(View):
     def post(self, request):
         message = ""
         station_list = station_list={"status": False, "detail": [
-            {"StationId":1,"Longitude":51.448187,"Latitude":35.744257, ,"AQI":10,"StationName_Fa":"ایستگاه یک"},
+            {"StationId":1,"Longitude":51.448187,"Latitude":35.744257, "AQI":10,"StationName_Fa":"ایستگاه یک"},
         {"StationId": 2, "Longitude": 51.493105, "Latitude": 35.757731, "AQI": 14, "StationName_Fa": "ایستگاه دو"},
         {"StationId": 3, "Longitude": 51.320125, "Latitude": 35.727770, "AQI": 1, "StationName_Fa": "ایستگاه سه"},
         {"StationId": 4, "Longitude": 51.368833, "Latitude": 35.770709, "AQI": 101, "StationName_Fa": "ایستگاه چهار"},
@@ -89,7 +89,7 @@ class service_2(View):
     def get(self, request):
         mci_area = MushroomSpot.objects.filter()
         station_list = station_list={"status": False, "detail": [
-            {"StationId":1,"Longitude":51.448187,"Latitude":35.744257, ,"AQI":10,"StationName_Fa":"ایستگاه یک"},
+            {"StationId":1,"Longitude":51.448187,"Latitude":35.744257, "AQI":10,"StationName_Fa":"ایستگاه یک"},
         {"StationId": 2, "Longitude": 51.493105, "Latitude": 35.757731, "AQI": 14, "StationName_Fa": "ایستگاه دو"},
         {"StationId": 3, "Longitude": 51.320125, "Latitude": 35.727770, "AQI": 1, "StationName_Fa": "ایستگاه سه"},
         {"StationId": 4, "Longitude": 51.368833, "Latitude": 35.770709, "AQI": 101, "StationName_Fa": "ایستگاه چهار"},

@@ -1,0 +1,390 @@
+{% load leaflet_tags %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>پلتفرم ابری مدیریت سرویس - همراه اول </title>
+
+	<!-- Global stylesheets -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<link href="{% static "core/global_assets/css/icons/icomoon/styles.min.css"%}" rel="stylesheet" type="text/css">
+	<link href="{% static "core/assets/css/bootstrap.min.css"%}" rel="stylesheet" type="text/css">
+	<link href="{% static "core/assets/css/bootstrap_limitless.min.css"%}" rel="stylesheet" type="text/css">
+	<link href="{% static "core/assets/css/layout.min.css"%}" rel="stylesheet" type="text/css">
+	<link href="{% static "core/assets/css/components.min.css"%}" rel="stylesheet" type="text/css">
+	<link href="{% static "core/assets/css/colors.min.css"%}" rel="stylesheet" type="text/css">
+	<!-- /global stylesheets -->
+
+	<!-- Core JS files -->
+	<script src="{% static "core/global_assets/js/main/jquery.min.js"%}"></script>
+	<script src="{% static "core/global_assets/js/main/bootstrap.bundle.min.js"%}"></script>
+	<script src="{% static "core/global_assets/js/plugins/loaders/blockui.min.js"%}"></script>
+	<script src="{% static "core/global_assets/js/plugins/ui/ripple.min.js"%}"></script>
+	<!-- /core JS files -->
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+	<!-- Theme JS files -->
+
+    <script>
+    $( document ).ready(function() {
+
+          // Listen for click on toggle checkbox
+            $('#select-all').click(function(event) {
+                if(this.checked) {
+                    // Iterate each checkbox
+                    $(':checkbox').each(function() {
+                        this.checked = true;
+                    });
+                } else {
+                    $(':checkbox').each(function() {
+                        this.checked = false;
+                    });
+                }
+            });
+
+            }
+        );
+
+    </script>
+
+
+</head>
+
+<body>
+
+	<!-- Main navbar -->
+	<div class="navbar navbar-expand-md navbar-dark bg-indigo">
+		<div class="navbar-brand wmin-200">
+			<a href="index.html" class="d-inline-block">
+				<img src="{% static "core/global_assets/images/logo_light.png"%}" alt="">
+			</a>
+		</div>
+
+		<div class="d-md-none">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-mobile">
+				<i class="icon-tree5"></i>
+			</button>
+			<button class="navbar-toggler sidebar-mobile-main-toggle" type="button">
+				<i class="icon-paragraph-justify3"></i>
+			</button>
+		</div>
+
+		<div class="collapse navbar-collapse" id="navbar-mobile">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a href="#" class="navbar-nav-link sidebar-control sidebar-main-toggle d-none d-md-block">
+						<i class="icon-paragraph-justify3"></i>
+					</a>
+				</li>
+
+
+			</ul>
+
+			<span class="badge bg-light shadow-1 text-indigo-700 ml-md-auto mr-md-3">فعال</span>
+
+			<ul class="navbar-nav">
+				<li class="nav-item dropdown">
+					<a href="#" class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown">
+						<i class="icon-bell2"></i>
+						<span class="d-md-none ml-2">فعالیت ها</span>
+						<span class="badge badge-pill badge-mark border-orange-400 ml-auto ml-md-0"></span>
+					</a>
+
+					<div class="dropdown-menu dropdown-menu-right dropdown-content wmin-md-350">
+						<div class="dropdown-content-header">
+							<span class="font-weight-semibold">آخرین فعالیت ها</span>
+							<a href="#" class="text-default"><i class="icon-search4 font-size-base"></i></a>
+						</div>
+
+						<div class="dropdown-content-body dropdown-scrollable">
+							<ul class="media-list">
+								<li class="media">
+									<div class="mr-3">
+										<a href="#" class="btn bg-success-400 rounded-round btn-icon"><i class="icon-mention"></i></a>
+									</div>
+
+									<div class="media-body">
+ایجاد زیر منو
+										<div class="font-size-sm text-muted mt-1">۱۰ دقیقه پیش</div>
+									</div>
+								</li>
+
+
+							</ul>
+						</div>
+
+						<div class="dropdown-content-footer bg-light">
+							<a href="#" class="text-grey mr-auto">نمایش همه</a>
+							<div>
+								<a href="#" class="text-grey" data-popup="tooltip" title="Clear list"><i class="icon-checkmark3"></i></a>
+								<a href="#" class="text-grey ml-2" data-popup="tooltip" title="Settings"><i class="icon-gear"></i></a>
+							</div>
+						</div>
+					</div>
+				</li>
+
+				<li class="nav-item dropdown dropdown-user">
+					<a href="#" class="navbar-nav-link d-flex align-items-center dropdown-toggle" data-toggle="dropdown">
+						<img src="{% static "core/global_assets/images/placeholders/placeholder.jpg"%}" class="rounded-circle mr-2" height="34" alt="">
+						<span>Victoria</span>
+					</a>
+
+					<div class="dropdown-menu dropdown-menu-right">
+						<a href="#" class="dropdown-item"><i class="icon-user-plus"></i>پروفایل من</a>
+						<a href="#" class="dropdown-item"><i class="icon-coins"></i> اعتبار من</a>
+						<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> پیام های من <span class="badge badge-pill bg-blue ml-auto">58</span></a>
+						<div class="dropdown-divider"></div>
+						<a href="#" class="dropdown-item"><i class="icon-cog5"></i> تنظیمات</a>
+						<a href="#" class="dropdown-item"><i class="icon-switch2"></i> خروج</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /main navbar -->
+
+
+	<!-- Page header -->
+	<div class="page-header">
+		<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+			<div class="d-flex">
+				<div class="breadcrumb">
+					<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> خانه</a>
+					<span class="breadcrumb-item active">نظارت بر آلودگی هوا</span>
+				</div>
+
+				<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+			</div>
+
+			<div class="header-elements d-none">
+				<div class="breadcrumb justify-content-center">
+					<a href="#" class="breadcrumb-elements-item">
+						<i class="icon-comment-discussion mr-2"></i>
+						پیشتبانی
+					</a>
+
+
+				</div>
+			</div>
+		</div>
+
+		<div class="page-header-content header-elements-md-inline">
+			<div class="page-title d-flex">
+				<h4><i class="icon-arrow-right6 mr-2"></i> <span class="font-weight-semibold">خانه</span> - نظارت بر آلودگی هوا</h4>
+				<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+			</div>
+
+			<div class="header-elements d-none mb-3 mb-md-0">
+				<div class="btn-group">
+					<button type="button" class="btn bg-pink-400 dropdown-toggle" data-toggle="dropdown"><i class="icon-pulse2 mr-2"></i> فعالیت ها</button>
+					<div class="dropdown-menu">
+						<div class="dropdown-header">فعالیت ها</div>
+
+						<div class="dropdown-header">خروجی</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /page header -->
+
+
+	<!-- Page content -->
+	<div class="page-content pt-0">
+
+		<!-- Main sidebar -->
+		<div class="sidebar sidebar-light sidebar-main sidebar-expand-md align-self-start">
+
+			<!-- Sidebar mobile toggler -->
+			<div class="sidebar-mobile-toggler text-center">
+				<a href="#" class="sidebar-mobile-main-toggle">
+					<i class="icon-arrow-right8"></i>
+				</a>
+				<span class="font-weight-semibold">Main sidebar</span>
+				<a href="#" class="sidebar-mobile-expand">
+					<i class="icon-screen-full"></i>
+					<i class="icon-screen-normal"></i>
+				</a>
+			</div>
+			<!-- /sidebar mobile toggler -->
+
+
+			<!-- Sidebar content -->
+			<div class="sidebar-content">
+
+				<!-- User menu -->
+				<div class="sidebar-user-material">
+					<div class="sidebar-user-material-body card-img-top">
+						<div class="card-body text-center">
+							<a href="#">
+								<img src="{% static "core/login/images/img-01.png"%}" class="img-fluid rounded-circle shadow-2 mb-3" width="100" height="100" alt="">
+							</a>
+							<h6 class="mb-0 text-white text-shadow-dark">هادی تایانلو</h6>
+							<span class="font-size-sm text-white text-shadow-dark">تهران</span>
+						</div>
+
+						<div class="sidebar-user-material-footer">
+							<a href="#user-nav" class="d-flex justify-content-between align-items-center text-shadow-dark dropdown-toggle" data-toggle="collapse"><span>حساب کاربری </span></a>
+						</div>
+					</div>
+
+					<div class="collapse" id="user-nav">
+						<ul class="nav nav-sidebar">
+							<li class="nav-item">
+								<a href="#" class="nav-link">
+									<i class="icon-user-plus"></i>
+									<span>پروفایل من</span>
+								</a>
+							</li>
+
+							<li class="nav-item">
+								<a href="#" class="nav-link">
+									<i class="icon-comment-discussion"></i>
+									<span>پیام ها</span>
+									<span class="badge bg-success-400 badge-pill align-self-center ml-auto">58</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link">
+									<i class="icon-cog5"></i>
+									<span>تنطیمات</span>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link">
+									<i class="icon-switch2"></i>
+									<span>خروج</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /user menu -->
+
+
+				<!-- Navigation -->
+                {% include "core/right_sidebar.html" %}
+				<!-- /navigation -->
+
+			</div>
+			<!-- /sidebar content -->
+
+		</div>
+		<!-- /main sidebar -->
+
+
+		<!-- Main content -->
+		<div class="content-wrapper">
+
+			<!-- Content area -->
+			<div class="content">
+
+				<!-- Main charts -->
+            		<div class="row">
+
+	              	                <div class="col-xl-12" >
+
+						<!-- Traffic sources -->
+						<div class="card" >
+							<div class="card-header header-elements-inline">
+								<h6 class="card-title">لیست سایت ها</h6>
+								<div class="header-elements">
+									<div class="form-check form-check-right form-check-switchery form-check-switchery-sm">
+
+									</div>
+								</div>
+							</div>
+
+							<div class="card-body py-0" >
+
+<form action="#" method="post">
+    {% csrf_token %}
+<table>
+    <tr>
+        <td><input type="submit"></td>
+        <td><textarea name="text_message" id="text_message" ></textarea></td>
+    </tr>
+</table>
+
+
+                                <table class="table  table-bordered " style="width: 100%">
+                                    <thead>
+                                    <th >#</th>
+                                    <th >شناسه مشترک</th>
+                                    <th > <input type="checkbox" name="select-all" id="select-all" /></th>
+
+
+                                    </thead>
+                                    <tbody>
+                                    {% for i in items %}
+
+                                        {% if i %}
+                                            <tr>
+                                                <td>{{ forloop.counter }}</td>
+                                                <td>{{ i }}</td>
+                                                <td><input type="checkbox" name="checkbox-{{ i }}" id="checkbox-{{ i }}" /></td>
+
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </tbody>
+                                                                       {% include "core/pagination.html" %}
+
+                                </table>
+</form>
+                            <br>
+							</div>
+
+							<div class="chart position-relative" id="traffic-sources"></div>
+						</div>
+						<!-- /traffic sources -->
+
+					</div>
+
+				</div>
+				<!-- /main charts -->
+
+
+				<!-- Dashboard content -->
+				<!-- /dashboard content -->
+
+			</div>
+			<!-- /content area -->
+
+		</div>
+		<!-- /main content -->
+
+	</div>
+	<!-- /page content -->
+
+
+	<!-- Footer -->
+	<div class="navbar navbar-expand-lg navbar-light">
+		<div class="text-center d-lg-none w-100">
+			<button type="button" class="navbar-toggler dropdown-toggle" data-toggle="collapse" data-target="#navbar-footer">
+				<i class="icon-unfold mr-2"></i>
+				Footer
+			</button>
+		</div>
+
+		<div class="navbar-collapse collapse" id="navbar-footer">
+			<span class="navbar-text">
+				&copy;  2020. <a href="#">Saharaiot.com</a>
+			</span>
+
+			<ul class="navbar-nav ml-lg-auto">
+				<li class="nav-item"><a href="http://saharaiot.com" class="navbar-nav-link" target="_blank"><i class="icon-lifebuoy mr-2"></i> پشتیبانی</a></li>
+				<li class="nav-item"><a href="http://saharaiot.com" class="navbar-nav-link" target="_blank"><i class="icon-file-text2 mr-2"></i> مستندات</a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- /footer -->
+
+
+</body>
+</html>

@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
     'leaflet',
-    'djgeojson'
+    'djgeojson',
+    'smart_road.apps.SmartRoadConfig'
 ]
 
 MIDDLEWARE = [

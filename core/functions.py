@@ -1,6 +1,7 @@
 import json
 from datetime import datetime, timedelta
 
+import requests
 from pip._vendor import urllib3
 
 
@@ -68,3 +69,20 @@ def send_sms(cd):
         temp_json = json.loads(r.data.decode('utf-8'))
 
         return {"status": True, "detail": json.loads(r.data.decode('utf-8'))}
+
+def send_sms_direct(receptor,message):
+    http = urllib3.PoolManager()
+
+    # data = {'barcode': barcode,"national_code":national_code}
+#    message=message.encode('utf-8')
+
+    r = requests.get('https://api.kavenegar.com/v1/4935715544676C487076716636596E786554787531513D3D/sms/send.json?receptor=%s&sender=%s&message=%s' %(str(receptor),"10008663",message))
+    #r = http.request('POST', 'https://api.kavenegar.com/v1/4935715544676C487076716636596E786554787531513D3D/sms/send.json?receptor=%s&sender=%s&message=%s' %(receptor,"10008663",message))
+    print( r.status_code)
+    if r.status_code != 200:
+        return {"status": False, "detail": None}
+    else:
+
+        temp_json = json.loads(r.content.decode('utf-8'))
+
+        return {"status": True, "detail": json.loads(r.content.decode('utf-8'))}

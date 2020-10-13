@@ -25,6 +25,7 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from djgeojson.views import GeoJSONLayerView
 
+from smart_road.views import service_3, service_3_sms
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,6 +33,8 @@ urlpatterns = [
     path('', Login.as_view(), name='Login'),
     path('panel/service/1/', service_1.as_view(), name='service_1'),
     path('panel/service/2/', service_2.as_view(), name='service_2'),
+    path('panel/service/3/', service_3.as_view(), name='service_3'),
+    path('panel/service/3/sms/<int:pk>/', service_3_sms.as_view(), name='service_3_sms'),
     path('panel/service/sms/', service_sms.as_view(), name='service_sms'),
     path('panel/service/sms/cron/', service_cron.as_view(), name='service_cron'),
 

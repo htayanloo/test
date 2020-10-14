@@ -33,7 +33,7 @@ class SQM(object):
             temp_1 = json.loads(temp)
             for i in temp_1:
                 event_id = int(i)
-        except NameError:
+        except :
             return None
 
         return event_id
@@ -53,13 +53,16 @@ class SQM(object):
              </def:smartRoad_retriveSubscriberByEvent>
           </soapenv:Body>
        </soapenv:Envelope>""" % event_id
+        try:
+            response = requests.post(self.url, data=body, headers=headers, verify=False)
+            # print(response.content)
+            numbers = \
+            xmltodict.parse(response.content)["soapenv:Envelope"]["soapenv:Body"]["smartRoad_retriveSubscriberByEventResponse"][
+                "smartRoad_retriveSubscriberByEventReturn"]
 
-        response = requests.post(self.url, data=body, headers=headers, verify=False)
-        # print(response.content)
-        numbers = \
-        xmltodict.parse(response.content)["soapenv:Envelope"]["soapenv:Body"]["smartRoad_retriveSubscriberByEventResponse"][
-            "smartRoad_retriveSubscriberByEventReturn"]
+            for i in json.loads(numbers):
+                result.append(i)
+        except:
+            pass
 
-        for i in json.loads(numbers):
-            result.append(i)
         return result

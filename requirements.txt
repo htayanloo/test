@@ -5,3 +5,4 @@ Pillow
 jsonfield
 jaeger-client
 requests
+xmltodict

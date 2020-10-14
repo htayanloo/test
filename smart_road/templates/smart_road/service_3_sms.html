@@ -292,7 +292,7 @@
 						<!-- Traffic sources -->
 						<div class="card" >
 							<div class="card-header header-elements-inline">
-								<h6 class="card-title">لیست سایت ها</h6>
+								<h6 class="card-title">لیست مشترکین </h6>
 								<div class="header-elements">
 									<div class="form-check form-check-right form-check-switchery form-check-switchery-sm">
 
@@ -306,8 +306,9 @@
     {% csrf_token %}
 <table>
     <tr>
-        <td><input type="submit"></td>
-        <td><textarea name="text_message" id="text_message" ></textarea></td>
+                <td><textarea name="text_message" id="text_message" ></textarea></td>
+
+        <td><input type="submit" value="ارسال پیامک"></td>
     </tr>
 </table>
 

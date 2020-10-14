@@ -4,3 +4,4 @@ django-geojson
 Pillow
 jsonfield
 jaeger-client
+requests

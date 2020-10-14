@@ -18,7 +18,7 @@ class Login(View):
 
     def post(self, request):
         form = ""
-        return redirect('service_1')
+        return redirect('service_3')
 
 
 class Dashboard(View):

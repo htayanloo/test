@@ -192,7 +192,7 @@
 			<div class="d-flex">
 				<div class="breadcrumb">
 					<a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> خانه</a>
-					<span class="breadcrumb-item active">نظارت بر آلودگی هوا</span>
+					<span class="breadcrumb-item active">موقعیت یابی مشترک</span>
 				</div>
 
 				<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
@@ -212,7 +212,7 @@
 
 		<div class="page-header-content header-elements-md-inline">
 			<div class="page-title d-flex">
-				<h4><i class="icon-arrow-right6 mr-2"></i> <span class="font-weight-semibold">خانه</span> - نظارت بر آلودگی هوا</h4>
+				<h4><i class="icon-arrow-right6 mr-2"></i> <span class="font-weight-semibold">خانه</span>-موقعیت یابی مشترک </h4>
 				<a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
 			</div>
 
@@ -370,7 +370,7 @@
 (function () {
 
     function loadmap() {
-        var djoptions = {"srid": null, "extent": [[-90, -180], [90, 180]], "fitextent": true, "center": [{{ mobile.lat }},{{ mobile.lng }}], "zoom": 19, "precision": 6, "minzoom": 3, "maxzoom": 18, "layers": [["OSM", "//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", "\u00a9 <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"]], "overlays": [], "attributionprefix": null, "scale": "metric", "minimap": false, "resetview": true, "tilesextent": []},
+        var djoptions = {"srid": null, "extent": [[-90, -180], [90, 180]], "fitextent": true, "center": [{% if mobile.lat%}{{ mobile.lat }},{{ mobile.lng }}{% else %}{{ mobile.base_lat }},{{ mobile.base_lng }}{% endif %}], "zoom": {% if mobile.lat %}19{% else %}6{% endif %}, "precision": 6, "minzoom": 3, "maxzoom": 18, "layers": [["OSM", "//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", "\u00a9 <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors"]], "overlays": [], "attributionprefix": null, "scale": "metric", "minimap": false, "resetview": true, "tilesextent": []},
             options = {djoptions: djoptions, initfunc: loadmap,
                        globals: false, callback: null},
             map = L.Map.djangoMap('main', options);

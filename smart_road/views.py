@@ -87,7 +87,8 @@ class service_4(View, ViewUtility, SQM):
     def get(self, request):
         event_list = Event.objects.filter()
         items = self.pagination(request=request, list=event_list)
-        mobile = {"mobile": "", "lat": "", "lng": ""}
+
+        mobile = {"mobile": "", "lat": "", "lng": "","base_lat": "35.700235", "base_lng": "51.382531"}
 
         if "mobile" in request.GET:
 

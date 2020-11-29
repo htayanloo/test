@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views import View
 
 from core.ViewUtility import ViewUtility
-from core.functions import send_sms, send_sms_direct
+from core.functions import send_sms, send_sms_direct, customer_location
 from core.models import alert
 from smart_road.forms import EventForm, CustomerNumber
 from smart_road.models import Event
@@ -87,13 +87,21 @@ class service_4(View, ViewUtility, SQM):
     def get(self, request):
         event_list = Event.objects.filter()
         items = self.pagination(request=request, list=event_list)
-        import random
-        lat="35.7"+str(int(random.uniform(1, 100000)))
-        lng="51.3"+str(int(random.uniform(1, 100000)))
-        mobile = {"mobile":request.GET.get("mobile"),"lat":lat,"lng": lng}
+        mobile = {"mobile": "", "lat": "", "lng": ""}
 
+        if "mobile" in request.GET:
+
+            temp = customer_location(request.GET["mobile"])
+            lng =temp["detail"]["Result"]["Long"]
+            lat =temp["detail"]["Result"]["Lat"]
+
+            mobile = {"mobile":request.GET.get("mobile"),"lat":lat,"lng": lng}
+
+            temp_form = self.form(initial={"mobile":mobile["mobile"]})
+        else:
+            temp_form = self.form(initial={"mobile":""})
         return render(request, self.template_name,
-                      {"items": items, "form": self.form,"mobile":mobile})
+                      {"items": items, "form": temp_form,"mobile":mobile})
 
     def post(self, request):
         message = ""

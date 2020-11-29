@@ -80,7 +80,7 @@
                 };
 
                 {#var customPopup = "ایستگاه سنجش   :{{ i.stationName_Fa }}\n وضعیت دی اکسید کربن:{{ i.detail_gas.co }}";#}
-        {% if mobile %}
+        {% if mobile.mobile %}
                 var customPopup = "<p>مشترک : {{mobile.mobile}}</p>";
 
                 L.marker([{{ mobile.lat }},{{ mobile.lng}}], {icon: myIcon}).bindPopup(customPopup,customOptions).addTo(map);

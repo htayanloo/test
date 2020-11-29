@@ -90,7 +90,6 @@ class service_4(View, ViewUtility, SQM):
         import random
         lat="35.7"+str(int(random.uniform(1, 100000)))
         lng="51.3"+str(int(random.uniform(1, 100000)))
-        print(lat)
         mobile = {"mobile":request.GET.get("mobile"),"lat":lat,"lng": lng}
 
         return render(request, self.template_name,

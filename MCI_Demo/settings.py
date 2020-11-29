@@ -128,7 +128,7 @@ MEDIA_ROOT = BASE_DIR
 
 LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (35.700235, 51.382531),
-    'DEFAULT_ZOOM': 13,
+    'DEFAULT_ZOOM': 12,
     'MIN_ZOOM': 3,
     'MAX_ZOOM': 18,
     'watch':'true',

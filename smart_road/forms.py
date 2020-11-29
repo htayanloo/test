@@ -16,3 +16,8 @@ class EventForm(ModelForm):
          labels = {
              "cell_name": "شناسه سلول",
          }
+
+
+
+class CustomerNumber(forms.Form):
+    mobile = forms.CharField(label='شماره موبایل مشترک', max_length=100)

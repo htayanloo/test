@@ -29,7 +29,26 @@
 
 	<!-- Theme JS files -->
 
+<style>
+    #pageloader
+{
+  background: rgba( 255, 255, 255, 0.8 );
+  display: none;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+}
 
+#pageloader img
+{
+  left: 50%;
+  margin-left: -32px;
+  margin-top: -32px;
+  position: absolute;
+  top: 50%;
+}
+</style>
 	<script src="{% static "core/assets/js/app.js"%}"></script>
 
 	<!-- /theme JS files -->
@@ -41,6 +60,9 @@
     <script>
     $( document ).ready(function() {
     console.log( "ready!" );
+     $("#myform").on("submit", function(){
+    $("#pageloader").fadeIn();
+  });//submit
 
       var dataurl = '{% url "data" %}';
 
@@ -323,7 +345,7 @@
 			<div class="content">
 
 				<!-- Main charts -->
-				<div class="row">
+            		<div class="row">
 					<div class="col-xl-12" >
 
 						<!-- Traffic sources -->
@@ -336,10 +358,15 @@
 							</div>
 
 							<div class="card-body py-0">
-<form action="#" method="get">
+<form action="#" method="get" id="myform">
 {{ form }}
-                                <input id="seach_mobile" type="submit"> </input>
+                                <input id="seach_mobile" type="submit"  onClick="$('#gif').css('visibility', 'visible');
+                    $('#form').submit();"> </input>
+
         </form>
+                                <div id="pageloader">
+   <img src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/images/loader-large.gif" alt="processing..." />
+</div>
 
 							</div>
 
@@ -349,6 +376,51 @@
 					</div>
 
 				</div>
+
+            {% if mobile.mobile %}
+				<div class="row">
+					<div class="col-xl-12" >
+
+						<!-- Traffic sources -->
+						<div class="card" style="">
+							<div class="card-header header-elements-inline">
+								<h6 class="card-title">مشخصات مشترک</h6>
+								<div class="header-elements">
+
+								</div>
+							</div>
+
+							<div class="card-body py-0">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>شماره موبایل</th>
+                                        <th>استان</th>
+                                        <th>شهر</th>
+                                        <th>سایت</th>
+                                        <th>موقعیت جغرافیایی</th>
+
+                                    </tr>
+                                    <tr>
+                                        <td>{{ mobile.mobile }}</td>
+                                        <td>{{ mobile.province }}</td>
+                                        <td>{{ mobile.city }}</td>
+                                        <td>{{ mobile.site }}</td>
+                                        <td>{{ mobile.lat }}-{{ mobile.lng }}</td>
+
+
+                                    </tr>
+
+                                </table>
+
+							</div>
+
+						</div>
+						<!-- /traffic sources -->
+
+					</div>
+
+				</div>
+            {% endif %}
 				<div class="row">
 					<div class="col-xl-12" >
 

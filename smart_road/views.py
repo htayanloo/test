@@ -88,15 +88,20 @@ class service_4(View, ViewUtility, SQM):
         event_list = Event.objects.filter()
         items = self.pagination(request=request, list=event_list)
 
-        mobile = {"mobile": "", "lat": "", "lng": "","base_lat": "35.700235", "base_lng": "51.382531"}
+        mobile = {"mobile": "", "lat": "", "lng": "","base_lat": "35.700235", "base_lng": "51.382531",
+                  "address":"","city":"","province":""}
 
         if "mobile" in request.GET:
 
             temp = customer_location(request.GET["mobile"])
+            print(temp)
             lng =temp["detail"]["Result"]["Long"]
             lat =temp["detail"]["Result"]["Lat"]
+            City =temp["detail"]["Result"]["City"]
+            Province =temp["detail"]["Result"]["Province"]
+            Site =temp["detail"]["Result"]["Site"]
 
-            mobile = {"mobile":request.GET.get("mobile"),"lat":lat,"lng": lng}
+            mobile = {"mobile":request.GET.get("mobile"),"lat":lat,"lng": lng,"city":City,"province":Province,"site":Site}
 
             temp_form = self.form(initial={"mobile":mobile["mobile"]})
         else:

@@ -98,10 +98,11 @@ class service_4(View, ViewUtility, SQM):
             lng =temp["detail"]["Result"]["Long"]
             lat =temp["detail"]["Result"]["Lat"]
             City =temp["detail"]["Result"]["City"]
+            address =temp["detail"]["Result"]["Address"]
             Province =temp["detail"]["Result"]["Province"]
             Site =temp["detail"]["Result"]["Site"]
 
-            mobile = {"mobile":request.GET.get("mobile"),"lat":lat,"lng": lng,"city":City,"province":Province,"site":Site}
+            mobile = {"mobile":request.GET.get("mobile"),"lat":lat,"lng": lng,"city":City,"province":Province,"site":Site,"address":address}
 
             temp_form = self.form(initial={"mobile":mobile["mobile"]})
         else:

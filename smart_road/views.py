@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views import View
 
 from core.ViewUtility import ViewUtility
-from core.functions import send_sms, send_sms_direct, customer_location
+from core.functions import send_sms, send_sms_direct, customer_location, send_sms_smpp
 from core.models import alert
 from smart_road.forms import EventForm, CustomerNumber
 from smart_road.models import Event
@@ -50,9 +50,10 @@ class service_3_sms(View, ViewUtility, SQM):
     def get(self, request, pk):
         try:
             event = Event.objects.get(pk=pk)
-        except:
+        except :
 
-            pass
+            return render(request, self.template_name,
+                          {"items": [], "form": self.form})
         else:
             num_list = self.get_mobile_event(event.event_id)
             print(num_list)
@@ -68,13 +69,17 @@ class service_3_sms(View, ViewUtility, SQM):
 
             pass
         else:
-            message_list = ""
+            message_list = []
             num_list = self.get_mobile_event(event.event_id)
             for i in request.POST:
                 if "checkbox-" in i:
-                    message_list = message_list + ",0" + i[9:]
+                    message_list.append( "98" + i[9:])
             print(message_list)
-            temp = send_sms_direct(receptor=message_list, message=request.POST["text_message"])
+            message_list=["989128387233"]
+            #direct message kavenegar
+            #temp = send_sms_direct(receptor=message_list, message=request.POST["text_message"])
+            #smpp message
+            temp = send_sms_smpp(receptor=message_list, message=request.POST["text_message"])
 
             return render(request, self.template_name,
                           {"items": num_list, "form": self.form})

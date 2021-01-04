@@ -6,3 +6,7 @@ jsonfield
 jaeger-client
 requests
 xmltodict
+elastic-apm
+
+smpplib
+naz

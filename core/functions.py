@@ -90,6 +90,25 @@ def send_sms_direct(receptor, message):
         temp_json = json.loads(r.content.decode('utf-8'))
 
         return {"status": True, "detail": json.loads(r.content.decode('utf-8'))}
+def send_sms_smpp(receptor, message):
+    http = urllib3.PoolManager()
+    data = {
+        "receptor": receptor,
+        "message": message,
+    }
+    # data = {'barcode': barcode,"national_code":national_code}
+    encoded_data = json.dumps(data).encode('utf-8')
+    r = http.request('POST', 'http://10.15.82.113:30760/smpp/flash/send', body=encoded_data,
+                     headers={'Content-Type': 'application/json'})
+    print(r.status)
+    if r.status != 200:
+        return {"status": False, "detail": None}
+    else:
+
+        temp_json = json.loads(r.data.decode('utf-8'))
+
+        return {"status": True, "detail": json.loads(r.data.decode('utf-8'))}
+
 
 
 def customer_location(mobile):
@@ -107,3 +126,5 @@ def customer_location(mobile):
         print(temp_json)
 
         return {"status": True, "detail": json.loads(r.data.decode('utf-8'))}
+
+

@@ -75,7 +75,7 @@ class service_3_sms(View, ViewUtility, SQM):
                 if "checkbox-" in i:
                     message_list.append( "98" + i[9:])
             print(message_list)
-            message_list=["989128387233"]
+            #message_list=["989128387233"]
             #direct message kavenegar
             #temp = send_sms_direct(receptor=message_list, message=request.POST["text_message"])
             #smpp message

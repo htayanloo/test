@@ -87,10 +87,11 @@ WSGI_APPLICATION = 'MCI_Demo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "portaldb",
-        'USER': "portaluser",
-        'PASSWORD': "1990hb",
-        'HOST': "10.15.82.127",
+        'NAME': os.environ.get("DBNAME"),
+        'USER': os.environ.get("DBUSER"),
+        'PASSWORD': os.environ.get("DBPASSWORD"),
+        'HOST': os.environ.get("DBSERVER"),
+        'PORT':os.environ.get("DBPORT"),
     }
 }
 

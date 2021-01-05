@@ -47,8 +47,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'elasticapm.contrib.django.middleware.TracingMiddleware',
-    'elasticapm.contrib.django.middleware.Catch404Middleware',
+    # 'elasticapm.contrib.django.middleware.TracingMiddleware',
+    # 'elasticapm.contrib.django.middleware.Catch404Middleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -86,8 +86,11 @@ WSGI_APPLICATION = 'MCI_Demo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': "portaldb",
+        'USER': "portaluser",
+        'PASSWORD': "1990hb",
+        'HOST': "10.15.82.127",
     }
 }
 
